@@ -1,0 +1,8 @@
+#text-editor {
+  width: 60vw;
+  height: 80vh;
+  outline: solid;
+  margin: 0 auto;
+  font-size: 16px;
+  text-align: left;
+}
