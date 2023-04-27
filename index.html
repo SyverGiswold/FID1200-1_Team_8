@@ -8,6 +8,7 @@
   <script async src="./js/test.js"></script>
 </head>
 <body>
+  <div id="black-overlay" style="position: fixed; height: 100vh; width: 100vw; top: 0; left: 0; pointer-events: none;"></div>
   <div>
     <button id="align-left">Align Left</button>
     <button id="align-center">Align Center</button>
@@ -16,7 +17,8 @@
     <button id="font-size-down">Font -</button>
     <input id="font-size" type="number" placeholder="px">
     <button id="set-font-size-button">set font size</button>
+    <button tabindex="-1" style="position: relative; z-index: 1;" id="blind-mode">blind mode</button>
   </div>
-  <p id="text-editor" contenteditable="true"></p>
+  <section spellcheck="true" id="text-editor" contenteditable="true"></section>
 </body>
 </html>
