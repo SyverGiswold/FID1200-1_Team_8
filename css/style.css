@@ -8,3 +8,48 @@
   font-size: 16px;
   text-align: left;
 }
+
+body {
+  line-height: 1.5;
+  letter-spacing: 0.12rem;
+  word-spacing: 0.16rem;
+}
+
+#text-editor div + div {
+  margin-top: 2rem;
+}
+
+.text-formating-buttons button img {
+  height: 32px;
+  width: 32px;
+}
+
+.text-formating-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Fjærne opp og ned pil i input https://www.geeksforgeeks.org/how-to-disable-arrows-from-number-input/ */
+#font-size::-webkit-outer-spin-button,
+#font-size::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Inspirasjon for drop down pil https://stackoverflow.com/questions/14218307/select-arrow-style-change */
+#font-select {
+  appearance: none;
+  background-image: url(../assets/arrow_drop_down.svg);
+  background-repeat: no-repeat;
+  background-position: right 0;
+  padding-right: 32px;
+}
+
+#style-select {
+  appearance: none;
+  background-image: url(../assets/arrow_drop_down.svg);
+  background-repeat: no-repeat;
+  background-position: right 0;
+  padding-right: 32px;
+}
