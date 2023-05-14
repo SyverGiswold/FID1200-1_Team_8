@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
   <script async src="./js/test.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Lato|Montserrat" rel="stylesheet">
 </head>
 
 <body>
@@ -17,14 +18,15 @@
     <button id="align-left"><img src="./assets/format_align_left.svg" alt="Venstrestill"></button>
     <button id="align-center"><img src="./assets/format_align_center.svg" alt="Midtstill"></button>
     <button id="align-right"><img src="./assets/format_align_right.svg" alt="Høyrestill"></button>
+    <button id="align-justify"><img src="./assets/format_align_justify.svg" alt="Rette marger"></button>
     <button id="font-size-up"><img src="./assets/text_increase.svg" alt="Øk skriftstørrelse"></button>
     <button id="font-size-down"><img src="./assets/text_decrease.svg" alt="Reduser skriftstørrelse"></button>
-    <input id="font-size" type="number" placeholder="px">
+    <input id="font-size" type="number" placeholder="px" aria-label="skriftstørrelse">
     <select name="font" id="font-select">
-      <option selected value="arial">Arial</option>
-      <option value="poppins">Poppins</option>
-      <option value="time-new-roman">Time New Roman</option>
-      <option value="comic-sans">Comic sans</option>
+      <option value="lato">Lato</option>
+      <option selected value="montserrat">Montserrat</option>
+      <option value="open sans">Open sans</option>
+      <option value="roboto">Roboto</option>
     </select>
     <select name="style" id="style-select">
       <option selected value="h1">Heading 1</option>

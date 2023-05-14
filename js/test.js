@@ -2,6 +2,7 @@ const textEditor = document.querySelector('[contenteditable]');
 const alignLeftButton = document.querySelector('#align-left');
 const alignCenterButton = document.querySelector('#align-center');
 const alignRightButton = document.querySelector('#align-right');
+const alignJustifyButton = document.querySelector('#align-justify');
 const fontSizeUpButton = document.querySelector('#font-size-up');
 const fontSizeDownButton = document.querySelector('#font-size-down');
 const fontSize = document.querySelector('#font-size');
@@ -9,6 +10,7 @@ const formatBold = document.querySelector('#format-bold');
 const formatItalic = document.querySelector('#format-italic');
 const formatUnderline = document.querySelector('#format-underline');
 const formatStrikethrough = document.querySelector('#format-strikethrough');
+const fontSelect = document.querySelector('#font-select');
 const addLink = document.querySelector('#add-link');
 const addImage = document.querySelector('#add-image');
 const fileInput = document.createElement('input');
@@ -18,6 +20,29 @@ const blindMode = document.querySelector('#blind-mode');
 
 addImage.addEventListener('click', () => {
   fileInput.click();
+});
+
+textEditor.addEventListener('input', () => {
+  const firstChild = textEditor.firstElementChild;
+  if (textEditor.children.length === 0 || textEditor.children[0].tagName !== 'DIV') {
+    // Save current cursor position
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const cursorPosition = range.startOffset;
+
+    // Move child nodes into new div
+    const div = document.createElement('div');
+    while (textEditor.firstChild) {
+      div.appendChild(textEditor.firstChild);
+    }
+    textEditor.appendChild(div);
+
+    // Restore cursor position
+    range.setStart(div.firstChild, cursorPosition);firstChild, cursorPosition;
+    range.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
 });
 
 fileInput.addEventListener('change', () => {
@@ -44,15 +69,18 @@ function insertImage(src) {
   }
 };
 
+// Ressurs for hvordan jeg formaterer avsnitt vert for seg https://javascript.info/selection-range
 let lastSelectionRange = null;
 
 alignLeftButton.addEventListener('click', () => applyAlign('left'));
 alignCenterButton.addEventListener('click', () => applyAlign('center'));
 alignRightButton.addEventListener('click', () => applyAlign('right'));
+alignJustifyButton.addEventListener('click', () => applyAlign('justify'));
 fontSizeUpButton.addEventListener('click', () => changeFontSize(1));
 fontSizeDownButton.addEventListener('click', () => changeFontSize(-1));
 formatUnderline.addEventListener('click', () => applyTextDecoration('underline'));
 formatStrikethrough.addEventListener('click', () => applyTextDecoration('line-through'));
+fontSelect.addEventListener('change', () => changeFontFamily(fontSelect));
 
 formatBold.addEventListener('click', () => {
   if (lastSelectionRange !== null) {
@@ -74,6 +102,11 @@ fontSize.addEventListener('keyup', (e) => {
     setFontSize();
   }
 });
+
+// Google hadde et eksempel på å bruke | til å importere fonter enklere https://developers.google.com/fonts/docs/getting_started
+function changeFontFamily(select) {
+  document.body.style.fontFamily = select.value;
+};
 
 textEditor.addEventListener('mouseup', () => {
   const selection = window.getSelection();
@@ -155,6 +188,8 @@ function applyTextDecoration(decorationType) {
     }
   }
 };
+
+changeFontFamily(fontSelect)
 
 // Eksprimentalt
 
