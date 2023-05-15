@@ -15,36 +15,36 @@
   <div id="black-overlay" style="position: fixed; height: 100vh; width: 100vw; top: 0; left: 0; pointer-events: none;">
   </div>
   <div class="text-formating-buttons">
+    <button id="save-as-pdf"><img src="./assets/picture_as_pdf.svg" alt="Lagre som pdf"></button>
+    <button id="add-link"><img src="./assets/link.svg" alt="Sett inn lenke"></button>
+    <button id="add-image"><img src="./assets/add_photo_alternate.svg" alt="Sett inn bilde"></button>
+    <button id="text-highlight"><img src="./assets/format_ink_highlighter.svg" alt="Fremhevingsfarge"></button>
+    <button id="text-color"><img src="./assets/format_color_text.svg" alt="Tekst farge"></button>
+    <button id="format-bulletpoint"><img src="./assets/format_list_bulleted.svg" alt="Punktliste"></button>
+    <button id="format-numberlist"><img src="./assets/format_list_numbered.svg" alt="Nummer liste"></button>
     <button id="align-left"><img src="./assets/format_align_left.svg" alt="Venstrestill"></button>
     <button id="align-center"><img src="./assets/format_align_center.svg" alt="Midtstill"></button>
     <button id="align-right"><img src="./assets/format_align_right.svg" alt="Høyrestill"></button>
     <button id="align-justify"><img src="./assets/format_align_justify.svg" alt="Rette marger"></button>
-    <button id="font-size-up"><img src="./assets/text_increase.svg" alt="Øk skriftstørrelse"></button>
-    <button id="font-size-down"><img src="./assets/text_decrease.svg" alt="Reduser skriftstørrelse"></button>
-    <input id="font-size" type="number" placeholder="px" aria-label="skriftstørrelse">
     <select name="font" id="font-select">
       <option value="lato">Lato</option>
       <option selected value="montserrat">Montserrat</option>
       <option value="open sans">Open sans</option>
       <option value="roboto">Roboto</option>
     </select>
+    <button id="format-bold"><img src="./assets/format_bold.svg" alt="Fet"></button>
+    <button id="format-italic"><img src="./assets/format_italic.svg" alt="Kursiv"></button>
+    <button id="format-underline"><img src="./assets/format_underlined.svg" alt="Understreket"></button>
+    <button id="format-strikethrough"><img src="./assets/strikethrough_s.svg" alt="Gjennomstreket"></button>
+    <button id="font-size-up"><img src="./assets/text_increase.svg" alt="Øk skriftstørrelse"></button>
+    <button id="font-size-down"><img src="./assets/text_decrease.svg" alt="Reduser skriftstørrelse"></button>
+    <input id="font-size" type="number" placeholder="px" aria-label="skriftstørrelse">
     <select name="style" id="style-select">
       <option selected value="h1">Heading 1</option>
       <option value="h2">Heading 2</option>
       <option value="h3">Heading 3</option>
       <option value="p">Paragraf</option>
     </select>
-    <button id="format-bold"><img src="./assets/format_bold.svg" alt="Fet"></button>
-    <button id="format-italic"><img src="./assets/format_italic.svg" alt="Kursiv"></button>
-    <button id="format-underline"><img src="./assets/format_underlined.svg" alt="Understreket"></button>
-    <button id="format-strikethrough"><img src="./assets/strikethrough_s.svg" alt="Gjennomstreket"></button>
-    <button id="format-bulletpoint"><img src="./assets/format_list_bulleted.svg" alt="Punktliste"></button>
-    <button id="format-numberlist"><img src="./assets/format_list_numbered.svg" alt="Nummer liste"></button>
-    <button id="text-highlight"><img src="./assets/format_ink_highlighter.svg" alt="Fremhevingsfarge"></button>
-    <button id="text-color"><img src="./assets/format_color_text.svg" alt="Tekst farge"></button>
-    <button id="add-link"><img src="./assets/link.svg" alt="Sett inn lenke"></button>
-    <button id="add-image"><img src="./assets/add_photo_alternate.svg" alt="Sett inn bilde"></button>
-    <button id="save-as-pdf"><img src="./assets/picture_as_pdf.svg" alt="Lagre som pdf"></button>
     <button tabindex="-1" style="position: relative; z-index: 1;" id="blind-mode">blind mode</button>
   </div>
   <section spellcheck="true" id="text-editor" contenteditable="true"></section>
