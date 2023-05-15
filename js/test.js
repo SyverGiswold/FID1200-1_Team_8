@@ -50,6 +50,29 @@ function insertImage(src) {
   }
 }
 
+textEditor.addEventListener('input', () => {
+  const firstChild = textEditor.firstElementChild;
+  if (textEditor.children.length === 0 || textEditor.children[0].tagName !== 'DIV') {
+    // Save current cursor position
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const cursorPosition = range.startOffset;
+
+    // Move child nodes into new div
+    const div = document.createElement('div');
+    while (textEditor.firstChild) {
+      div.appendChild(textEditor.firstChild);
+    }
+    textEditor.appendChild(div);
+
+    // Restore cursor position
+    range.setStart(div.firstChild, cursorPosition);firstChild, cursorPosition;
+    range.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+});
+
 alignLeftButton.addEventListener('click', () => applyAlign('left'));
 alignCenterButton.addEventListener('click', () => applyAlign('center'));
 alignRightButton.addEventListener('click', () => applyAlign('right'));
