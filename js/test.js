@@ -18,38 +18,18 @@ fileInput.type = 'file';
 const blackOverlay = document.querySelector('#black-overlay');
 const blindMode = document.querySelector('#blind-mode');
 
+// Ressurs for hvordan jeg formaterer avsnitt vert for seg https://javascript.info/selection-range
+let lastSelectionRange = null;
+
 addImage.addEventListener('click', () => {
   fileInput.click();
 });
 
-textEditor.addEventListener('input', () => {
-  const firstChild = textEditor.firstElementChild;
-  if (textEditor.children.length === 0 || textEditor.children[0].tagName !== 'DIV') {
-    // Save current cursor position
-    const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
-    const cursorPosition = range.startOffset;
-
-    // Move child nodes into new div
-    const div = document.createElement('div');
-    while (textEditor.firstChild) {
-      div.appendChild(textEditor.firstChild);
-    }
-    textEditor.appendChild(div);
-
-    // Restore cursor position
-    range.setStart(div.firstChild, cursorPosition);firstChild, cursorPosition;
-    range.collapse(true);
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-});
-
 fileInput.addEventListener('change', () => {
   const file = fileInput.files[0];
-  if (file) {
+  if (file && !fileInput.matches(':focus')) {
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = (event) => {
       const imageSrc = event.target.result;
       insertImage(imageSrc);
     };
@@ -61,16 +41,14 @@ function insertImage(src) {
   const img = document.createElement('img');
   img.src = src;
   img.style.maxWidth = '100%';
-  
-  const selection = window.getSelection();
-  if (selection.rangeCount > 0) {
-    const range = selection.getRangeAt(0);
-    range.insertNode(img);
-  }
-};
 
-// Ressurs for hvordan jeg formaterer avsnitt vert for seg https://javascript.info/selection-range
-let lastSelectionRange = null;
+  const range = lastSelectionRange;
+
+  if (range && range.startContainer && range.startContainer.parentNode) {
+    const lineStartNode = range.startContainer.parentNode;
+    lineStartNode.appendChild(img);
+  }
+}
 
 alignLeftButton.addEventListener('click', () => applyAlign('left'));
 alignCenterButton.addEventListener('click', () => applyAlign('center'));
