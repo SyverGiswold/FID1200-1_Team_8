@@ -1,3 +1,13 @@
+import { applyAlign } from "./module/align.js";
+import { getFontSize } from "./module/styleSelect.js";
+import { updateStyleSelectValue } from "./module/styleSelect.js";
+import { insertImage } from "./module/insertImage.js";
+import { changeFontFamily } from "./module/changeFontFamily.js";
+import { changeFontSize } from "./module/changeFontSize.js";
+import { setFontSize } from "./module/changeFontSize.js";
+import { updateFontSizeInput } from "./module/changeFontSize.js";
+import { applyTextDecoration } from "./module/applyTextDecoration.js";
+
 const textEditor = document.querySelector('[contenteditable]');
 const alignLeftButton = document.querySelector('#align-left');
 const alignCenterButton = document.querySelector('#align-center');
@@ -15,11 +25,24 @@ const addLink = document.querySelector('#add-link');
 const addImage = document.querySelector('#add-image');
 const fileInput = document.createElement('input');
 fileInput.type = 'file';
+const styleSelect = document.querySelector('#style-select');
 const blackOverlay = document.querySelector('#black-overlay');
 const blindMode = document.querySelector('#blind-mode');
 
 // Ressurs for hvordan jeg formaterer avsnitt vert for seg https://javascript.info/selection-range
 let lastSelectionRange = null;
+
+export { lastSelectionRange }
+export { fontSize }
+export { styleSelect }
+
+styleSelect.addEventListener('change', () => {
+  if (lastSelectionRange !== null) {
+    const lineStartNode = lastSelectionRange.startContainer.parentNode;
+    const selectedStyle = styleSelect.value;
+    lineStartNode.style.fontSize = getFontSize(selectedStyle);
+  }
+});
 
 addImage.addEventListener('click', () => {
   fileInput.click();
@@ -32,26 +55,23 @@ fileInput.addEventListener('change', () => {
     reader.onload = (event) => {
       const imageSrc = event.target.result;
       insertImage(imageSrc);
+
+      fileInput.value = '';
     };
     reader.readAsDataURL(file);
   }
 });
 
-function insertImage(src) {
-  const img = document.createElement('img');
-  img.src = src;
-  img.style.maxWidth = '100%';
-
-  const range = lastSelectionRange;
-
-  if (range && range.startContainer && range.startContainer.parentNode) {
-    const lineStartNode = range.startContainer.parentNode;
-    lineStartNode.appendChild(img);
+textEditor.addEventListener('keyup', (event) => {
+  if (event.key === 'Backspace') {
+    const firstDiv = textEditor.querySelector('div');
+    if (firstDiv && firstDiv.textContent === '') {
+      firstDiv.remove();
+    }
   }
-}
+});
 
 textEditor.addEventListener('input', () => {
-  const firstChild = textEditor.firstElementChild;
   if (textEditor.children.length === 0 || textEditor.children[0].tagName !== 'DIV') {
     // Save current cursor position
     const selection = window.getSelection();
@@ -66,7 +86,10 @@ textEditor.addEventListener('input', () => {
     textEditor.appendChild(div);
 
     // Restore cursor position
-    range.setStart(div.firstChild, cursorPosition);firstChild, cursorPosition;
+    if (!div.firstChild) {
+      div.appendChild(document.createTextNode(''));
+    }
+    range.setStart(div.firstChild, cursorPosition);
     range.collapse(true);
     selection.removeAllRanges();
     selection.addRange(range);
@@ -104,20 +127,7 @@ fontSize.addEventListener('keyup', (e) => {
   }
 });
 
-// Google hadde et eksempel på å bruke | til å importere fonter enklere https://developers.google.com/fonts/docs/getting_started
-function changeFontFamily(select) {
-  document.body.style.fontFamily = select.value;
-};
-
 textEditor.addEventListener('mouseup', () => {
-  const selection = window.getSelection();
-  if (selection.rangeCount > 0) {
-    lastSelectionRange = selection.getRangeAt(0);
-    updateFontSizeInput();
-  }
-});
-
-textEditor.addEventListener('keydown', () => {
   const selection = window.getSelection();
   if (selection.rangeCount > 0) {
     lastSelectionRange = selection.getRangeAt(0);
@@ -133,8 +143,25 @@ textEditor.addEventListener('keyup', () => {
   }
 });
 
+textEditor.addEventListener('keyup', () => { 
+  const selection = window.getSelection();
+  if (selection.rangeCount > 0) {
+    lastSelectionRange = selection.getRangeAt(0);
+    updateStyleSelectValue();
+  }
+});
+
+textEditor.addEventListener('mouseup', () => { 
+  const selection = window.getSelection();
+  if (selection.rangeCount > 0) {
+    lastSelectionRange = selection.getRangeAt(0);
+    updateStyleSelectValue();
+  }
+});
+
 // Kun for brukertest
 let isBlindModeOn = false;
+
 blindMode.addEventListener('click', () => {
   isBlindModeOn = !isBlindModeOn;
   if (isBlindModeOn) {
@@ -144,50 +171,4 @@ blindMode.addEventListener('click', () => {
   }
 });
 
-function applyAlign(align) {
-  if (lastSelectionRange !== null) {
-    const lineStartNode = lastSelectionRange.startContainer.parentNode;
-    lineStartNode.style.textAlign = align;
-  }
-};
-
-function changeFontSize(size) {
-  if (lastSelectionRange !== null) {
-    const lineStartNode = lastSelectionRange.startContainer.parentNode;
-    const currentFontSize = parseInt(window.getComputedStyle(lineStartNode).getPropertyValue('font-size'));
-    const newFontSize = currentFontSize + size;
-    lineStartNode.style.fontSize = `${newFontSize}px`;
-    updateFontSizeInput();
-  }
-};
-
-function setFontSize() {
-  if (lastSelectionRange !== null) {
-    const lineStartNode = lastSelectionRange.startContainer.parentNode;
-    lineStartNode.style.fontSize = `${fontSize.value}px`;
-    updateFontSizeInput();
-  }
-};
-
-function updateFontSizeInput() {
-  if (lastSelectionRange !== null) {
-    const lineStartNode = lastSelectionRange.startContainer.parentNode;
-    const currentFontSize = parseInt(window.getComputedStyle(lineStartNode).getPropertyValue('font-size'));
-    fontSize.value = currentFontSize;
-  }
-};
-
-function applyTextDecoration(decorationType) {
-  if (lastSelectionRange !== null) {
-    const lineStartNode = lastSelectionRange.startContainer.parentNode;
-    const textDecoration = lineStartNode.style.textDecoration;
-
-    if (textDecoration.includes(decorationType)) {
-      lineStartNode.style.textDecoration = textDecoration.replace(decorationType, '').trim();
-    } else {
-      lineStartNode.style.textDecoration += ` ${decorationType}`;
-    }
-  }
-};
-
-changeFontFamily(fontSelect)
+changeFontFamily(fontSelect);

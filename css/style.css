@@ -19,9 +19,25 @@ body {
   margin-top: 2rem;
 }
 
+#text-editor img + div {
+  margin-top: 2rem;
+}
+
+#text-editor div + img {
+  margin-top: 2rem;
+}
+
+#text-editor img + img {
+  margin-top: 2rem;
+}
+
 .text-formating-buttons button img {
   height: 32px;
   width: 32px;
+}
+
+.text-formating-buttons button {
+  height: 32px;
 }
 
 .text-formating-buttons {
