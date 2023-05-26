@@ -1,5 +1,5 @@
-import { lastSelectionRange } from '../main.js';
-import { styleSelect } from '../main.js';
+import { lastSelectionRange, styleSelect } from '../textEditor.js';
+
 
 // referanse til styleSelect variablen https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
 export function getFontSize(style) {

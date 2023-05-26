@@ -1,12 +1,14 @@
+// animasjon inspirasjon https://www.youtube.com/watch?v=T33NN_pPeNI&t=1s
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-          entry.target.classList.add('show')
+        entry.target.classList.add('show')
       } else {
-          entry.target.classList.remove('show')
+        entry.target.classList.remove('show')
       }
-  })
-});
-
-const hiddenElements = document.querySelectorAll('.hidden');
-hiddenElements.forEach((el) => observer.observe(el));
+    })
+  }, { rootMargin: '-50% 0px' });
+  
+  const hiddenElements = document.querySelectorAll('.hidden');
+  hiddenElements.forEach((el) => observer.observe(el));
+  

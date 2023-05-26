@@ -1,4 +1,4 @@
-import { lastSelectionRange } from '../main.js';
+import { lastSelectionRange } from '../textEditor.js';
 
 
 // bilde referanse https://stackoverflow.com/questions/43314912/upload-image-with-a-single-button-in-html

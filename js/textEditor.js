@@ -3,9 +3,6 @@ import { getFontSize } from "./module/styleSelect.js";
 import { updateStyleSelectValue } from "./module/styleSelect.js";
 import { insertImage } from "./module/insertImage.js";
 import { changeFontFamily } from "./module/changeFontFamily.js";
-import { changeFontSize } from "./module/changeFontSize.js";
-import { setFontSize } from "./module/changeFontSize.js";
-import { updateFontSizeInput } from "./module/changeFontSize.js";
 import { applyTextDecoration } from "./module/applyTextDecoration.js";
 
 const textEditor = document.querySelector('[contenteditable]');
@@ -13,9 +10,6 @@ const alignLeftButton = document.querySelector('#align-left');
 const alignCenterButton = document.querySelector('#align-center');
 const alignRightButton = document.querySelector('#align-right');
 const alignJustifyButton = document.querySelector('#align-justify');
-const fontSizeUpButton = document.querySelector('#font-size-up');
-const fontSizeDownButton = document.querySelector('#font-size-down');
-const fontSize = document.querySelector('#font-size');
 const formatBold = document.querySelector('#format-bold');
 const formatItalic = document.querySelector('#format-italic');
 const formatUnderline = document.querySelector('#format-underline');
@@ -25,16 +19,11 @@ const addLink = document.querySelector('#add-link');
 const addImage = document.querySelector('#add-image');
 const fileInput = document.createElement('input');
 fileInput.type = 'file';
-const styleSelect = document.querySelector('#style-select');
+export const styleSelect = document.querySelector('#style-select');
 const blackOverlay = document.querySelector('#black-overlay');
 const blindMode = document.querySelector('#blind-mode');
 
-// Ressurs for hvordan jeg formaterer avsnitt vert for seg https://javascript.info/selection-range
-let lastSelectionRange = null;
-
-export { lastSelectionRange }
-export { fontSize }
-export { styleSelect }
+export let lastSelectionRange = null;
 
 styleSelect.addEventListener('change', () => {
   if (lastSelectionRange !== null) {
@@ -73,19 +62,16 @@ textEditor.addEventListener('keyup', (event) => {
 
 textEditor.addEventListener('input', () => {
   if (textEditor.children.length === 0 || textEditor.children[0].tagName !== 'DIV') {
-    // Save current cursor position
     const selection = window.getSelection();
     const range = selection.getRangeAt(0);
     const cursorPosition = range.startOffset;
 
-    // Move child nodes into new div
     const div = document.createElement('div');
     while (textEditor.firstChild) {
       div.appendChild(textEditor.firstChild);
     }
     textEditor.appendChild(div);
 
-    // Restore cursor position
     if (!div.firstChild) {
       div.appendChild(document.createTextNode(''));
     }
@@ -100,9 +86,8 @@ alignLeftButton.addEventListener('click', () => applyAlign('left'));
 alignCenterButton.addEventListener('click', () => applyAlign('center'));
 alignRightButton.addEventListener('click', () => applyAlign('right'));
 alignJustifyButton.addEventListener('click', () => applyAlign('justify'));
-fontSizeUpButton.addEventListener('click', () => changeFontSize(1));
-fontSizeDownButton.addEventListener('click', () => changeFontSize(-1));
 formatUnderline.addEventListener('click', () => applyTextDecoration('underline'));
+
 formatStrikethrough.addEventListener('click', () => applyTextDecoration('line-through'));
 fontSelect.addEventListener('change', () => changeFontFamily(fontSelect));
 
@@ -120,10 +105,11 @@ formatItalic.addEventListener('click', () => {
   }
 });
 
-
-fontSize.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    setFontSize();
+textEditor.addEventListener('keyup', () => {
+  const selection = window.getSelection();
+  if (selection.rangeCount > 0) {
+    lastSelectionRange = selection.getRangeAt(0);
+    updateStyleSelectValue();
   }
 });
 
@@ -131,35 +117,10 @@ textEditor.addEventListener('mouseup', () => {
   const selection = window.getSelection();
   if (selection.rangeCount > 0) {
     lastSelectionRange = selection.getRangeAt(0);
-    updateFontSizeInput();
-  }
-});
-
-textEditor.addEventListener('keyup', () => {
-  const selection = window.getSelection();
-  if (selection.rangeCount > 0) {
-    lastSelectionRange = selection.getRangeAt(0);
-    updateFontSizeInput();
-  }
-});
-
-textEditor.addEventListener('keyup', () => { 
-  const selection = window.getSelection();
-  if (selection.rangeCount > 0) {
-    lastSelectionRange = selection.getRangeAt(0);
     updateStyleSelectValue();
   }
 });
 
-textEditor.addEventListener('mouseup', () => { 
-  const selection = window.getSelection();
-  if (selection.rangeCount > 0) {
-    lastSelectionRange = selection.getRangeAt(0);
-    updateStyleSelectValue();
-  }
-});
-
-// Kun for brukertest
 let isBlindModeOn = false;
 
 blindMode.addEventListener('click', () => {

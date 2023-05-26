@@ -1,4 +1,4 @@
-import { lastSelectionRange } from '../main.js';
+import { lastSelectionRange } from '../textEditor.js';
 
 export function applyAlign(align) {
   if (lastSelectionRange !== null) {

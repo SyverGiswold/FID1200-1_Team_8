@@ -1,18 +1,26 @@
+html {
+  font-size: 100%; /*16px*/
+}
+
 #text-editor {
-  max-width: 900px;
-  width: 90vw;
-  min-height: 500px;
+  width: 100%;
+  min-height: 450px;
   height: fit-content;
-  outline: solid;
+  color: #F4EEFC;
   margin: 0 auto;
-  font-size: 16px;
   text-align: left;
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
 }
 
 body {
   line-height: 1.5;
   letter-spacing: 0.12rem;
   word-spacing: 0.16rem;
+  background-color: #1f142c;
+  padding: 16px;
 }
 
 #text-editor div + div {
@@ -37,7 +45,14 @@ body {
 }
 
 .text-formating-buttons button {
-  height: 32px;
+  padding: 8px;
+  background-color: transparent;
+}
+
+.text-formating-buttons select {
+  background-color: transparent;
+  color: #F4EEFC;
+  height: 48px;
 }
 
 .text-formating-buttons {
@@ -56,16 +71,16 @@ body {
 /* Inspirasjon for drop down pil https://stackoverflow.com/questions/14218307/select-arrow-style-change */
 #font-select {
   appearance: none;
-  background-image: url(../assets/arrow_drop_down.svg);
+  background-image: url(../assets/arrow_drop_down_test.svg);
   background-repeat: no-repeat;
   background-position: right 0;
-  padding-right: 32px;
+  padding-right: 48px;
 }
 
 #style-select {
   appearance: none;
-  background-image: url(../assets/arrow_drop_down.svg);
+  background-image: url(../assets/arrow_drop_down_test.svg);
   background-repeat: no-repeat;
   background-position: right 0;
-  padding-right: 32px;
+  padding-right: 48px;
 }
