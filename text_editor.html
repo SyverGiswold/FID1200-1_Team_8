@@ -6,22 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Text Editor</title>
   <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variabel.css">
   <link rel="stylesheet" href="./css/text_editor.css">
   <script type="module" async src="./js/textEditor.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400:i:b|Open+Sans:400:i:b|Lato:400:i:b|Montserrat:400:i:b" rel="stylesheet">
 </head>
 
 <body>
-  <div id="black-overlay" style="position: fixed; height: 100vh; width: 100vw; top: 0; left: 0; pointer-events: none;">
-  </div>
+
   <div class="text-formating-buttons">
-    <button id="save-as-pdf"><img src="./assets/picture_as_pdf.svg" alt="Lagre som pdf"></button>
-    <button id="add-link"><img src="./assets/link.svg" alt="Sett inn lenke"></button>
     <button id="add-image"><img src="./assets/add_photo_alternate.svg" alt="Sett inn bilde"></button>
-    <button id="text-highlight"><img src="./assets/format_ink_highlighter.svg" alt="Fremhevingsfarge"></button>
-    <button id="text-color"><img src="./assets/format_color_text.svg" alt="Tekst farge"></button>
-    <button id="format-bulletpoint"><img src="./assets/format_list_bulleted.svg" alt="Punktliste"></button>
-    <button id="format-numberlist"><img src="./assets/format_list_numbered.svg" alt="Nummer liste"></button>
     <select name="font" id="font-select">
       <option value="lato">Lato</option>
       <option selected value="montserrat">Montserrat</option>
@@ -37,15 +31,14 @@
     <button id="format-underline"><img src="./assets/format_underlined.svg" alt="Understreket"></button>
     <button id="format-strikethrough"><img src="./assets/strikethrough_s.svg" alt="Gjennomstreket"></button>
     <select name="style" id="style-select">
-      <option value="h1">Heading 1</option>
-      <option value="h2">Heading 2</option>
-      <option value="h3">Heading 3</option>
-      <option value="h4">Heading 4</option>
-      <option value="h5">Heading 5</option>
-      <option value="h6">Heading 6</option>
-      <option selected value="p">Paragraf</option>
+      <option value="h1">Heading 1 / 48px</option>
+      <option value="h2">Heading 2 / 40px</option>
+      <option value="h3">Heading 3 / 33px</option>
+      <option value="h4">Heading 4 / 28px</option>
+      <option value="h5">Heading 5 / 23px</option>
+      <option value="h6">Heading 6 / 19px</option>
+      <option selected value="p">Paragraf / 16px</option>
     </select>
-    <button tabindex="-1" style="position: relative; z-index: 1; color: white;" id="blind-mode">blind mode</button>
   </div>
   <section spellcheck="true" id="text-editor" contenteditable="true"></section>
 </body>

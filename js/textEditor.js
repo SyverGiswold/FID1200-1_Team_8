@@ -20,8 +20,6 @@ const addImage = document.querySelector('#add-image');
 const fileInput = document.createElement('input');
 fileInput.type = 'file';
 export const styleSelect = document.querySelector('#style-select');
-const blackOverlay = document.querySelector('#black-overlay');
-const blindMode = document.querySelector('#blind-mode');
 
 export let lastSelectionRange = null;
 
@@ -118,17 +116,6 @@ textEditor.addEventListener('mouseup', () => {
   if (selection.rangeCount > 0) {
     lastSelectionRange = selection.getRangeAt(0);
     updateStyleSelectValue();
-  }
-});
-
-let isBlindModeOn = false;
-
-blindMode.addEventListener('click', () => {
-  isBlindModeOn = !isBlindModeOn;
-  if (isBlindModeOn) {
-    blackOverlay.style.backgroundColor = 'black';
-  } else {
-    blackOverlay.style.backgroundColor = '';
   }
 });
 

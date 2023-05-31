@@ -2,25 +2,36 @@ html {
   font-size: 100%; /*16px*/
 }
 
-#text-editor {
-  width: 100%;
-  min-height: 450px;
-  height: fit-content;
-  color: #F4EEFC;
-  margin: 0 auto;
-  text-align: left;
-}
-
-[contenteditable] {
-  outline: 0px solid transparent;
-}
-
 body {
   line-height: 1.5;
   letter-spacing: 0.12rem;
   word-spacing: 0.16rem;
-  background-color: #1f142c;
+  background-color: var(--background);
+}
+
+.text-formating-buttons {
+  position: fixed;
+  background-color: var(--background);
   padding: 16px;
+}
+
+button img {
+  color: var(--foreground);
+}
+
+#text-editor {
+  width: 100%;
+  min-height: 450px;
+  height: fit-content;
+  color: var(--foreground);
+  margin: 0 auto;
+  text-align: left;
+  caret-color: var(--foreground);
+  padding: 16px;
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
 }
 
 #text-editor div + div {
@@ -51,7 +62,7 @@ body {
 
 .text-formating-buttons select {
   background-color: transparent;
-  color: #F4EEFC;
+  color: var(--foreground);
   height: 48px;
 }
 
@@ -83,4 +94,18 @@ body {
   background-repeat: no-repeat;
   background-position: right 0;
   padding-right: 48px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  height: 80px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border-radius: 20px;
 }

@@ -15,7 +15,7 @@ body {
   line-height: 1.5;
   letter-spacing: 0.12rem;
   word-spacing: 0.16rem;
-  background-color: #0C0019;
+  background-color: var(--body);
 }
 
 header {
@@ -32,14 +32,14 @@ nav {
   position: fixed;
   z-index: 1;
   height: 80px;
-  background-color: #1f142c;
+  background-color: var(--background);
 }
 
 button {
   height: 32px;
   font-size: 23px;
   background-color: transparent;
-  color: #F4EEFC;
+  color: var(--foreground);
   display: inline-block;
   position: relative;
 }
@@ -54,7 +54,7 @@ button::after {
   height: 6px;
   bottom: 0;
   left: 0;
-  background-color: #DB541F;
+  background-color: var(--accent);
   transform-origin: bottom left;
   transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
 }
@@ -72,13 +72,13 @@ button:focus::after {
 }
 
 h1 {
-  color: #F4EEFC;
+  color: var(--foreground);
   font-size: 60px;
   font-weight: 700;
 }
 
 p {
-  color: #F4EEFC;
+  color: var(--foreground);
   font-weight: 400;
 }
 
@@ -98,7 +98,7 @@ section {
   justify-content: center;
 }
 
-section div {
+section section {
   height: 100%;
   width: 75%;
   display: flex;
@@ -108,14 +108,14 @@ section div {
 }
 
 article {
-  background-color: #1f142c;
+  background-color: var(--background);
   padding: 32px;
   border-radius: 20px;
 }
 
 iframe {
   width: 100%;
-  height: 600px;
+  height: 70vh;
   border-radius: 20px;
 }
 
@@ -146,4 +146,18 @@ iframe {
   opacity: 1;
   filter: blur(0);
   transform: translateY(0);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  height: 80px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border-radius: 20px;
 }
