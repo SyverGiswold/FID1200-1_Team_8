@@ -85,7 +85,6 @@ alignCenterButton.addEventListener('click', () => applyAlign('center'));
 alignRightButton.addEventListener('click', () => applyAlign('right'));
 alignJustifyButton.addEventListener('click', () => applyAlign('justify'));
 formatUnderline.addEventListener('click', () => applyTextDecoration('underline'));
-
 formatStrikethrough.addEventListener('click', () => applyTextDecoration('line-through'));
 fontSelect.addEventListener('change', () => changeFontFamily(fontSelect));
 
@@ -120,3 +119,11 @@ textEditor.addEventListener('mouseup', () => {
 });
 
 changeFontFamily(fontSelect);
+
+// funksjon laget av ChatGPT
+window.addEventListener('resize', function() {
+  let headerHeight = document.querySelector('.text-formating-buttons').offsetHeight;
+  document.querySelector('#text-editor').style.paddingTop = (headerHeight + 16) + 'px';
+});
+
+window.dispatchEvent(new Event('resize'));
