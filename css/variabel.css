@@ -1,5 +1,5 @@
 :root {
-  --body: #0C0019;
+  --body: linear-gradient(to bottom, #16002b, #0C0019);
   --background: #281a39;
   --foreground: #F4EEFC;
   --accent: #DB541F;

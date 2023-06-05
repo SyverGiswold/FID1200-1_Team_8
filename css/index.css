@@ -5,7 +5,6 @@ html {
   overflow-y: hidden;
   font-size: 100%; /*16px*/
   overflow-y: scroll;
-  height: 100vh;
   scroll-snap-type: y mandatory;
   width: 100%;
   scroll-behavior: smooth;
@@ -27,7 +26,7 @@ body {
   line-height: 1.5;
   letter-spacing: 0.12rem;
   word-spacing: 0.16rem;
-  background-color: var(--body);
+  background: var(--body);
 }
 
 header {
@@ -107,10 +106,15 @@ section section {
   gap: 2rem;
 }
 
+section section img {
+  width: 50%;
+}
+
 article {
   background-color: var(--background);
   padding: 2rem;
   border-radius: 1.25rem;
+  width: 50%;
 }
 
 iframe {
@@ -131,10 +135,6 @@ iframe {
   scroll-snap-align: end;
 }
 
-.section_content article, img {
-  flex: 1;
-}
-
 .hidden {
   opacity: 0;
   filter: blur(0.3125rem);
@@ -146,6 +146,10 @@ iframe {
   opacity: 1;
   filter: blur(0);
   transform: translateY(0);
+}
+
+.showDelay {
+  transition-delay: 200ms;
 }
 
 ::-webkit-scrollbar {
