@@ -5,20 +5,20 @@ import { lastSelectionRange, styleSelect } from '../textEditor.js';
 export function getFontSize(style) {
   switch (style) {
     case 'h1':
-      return '48px';
+      return '3rem';
     case 'h2':
-      return '40px';
+      return '2.5rem';
     case 'h3':
-      return '33px';
+      return '2.0625rem';
     case 'h4':
-      return '28px';
+      return '1.75rem';
     case 'h5':
-      return '23px';
+      return '1.4375rem';
     case 'h6':
-      return '19px';
+      return '1.1875rem';
     case 'p':
     default:
-      return '16px';
+      return '1rem';
   }
 };
 
