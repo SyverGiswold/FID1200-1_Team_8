@@ -3,7 +3,7 @@
 html {
   font-family: 'Roboto', sans-serif;
   overflow-y: hidden;
-  font-size: 100%; /*16px*/
+  font-size: 100%;/*16px*/
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   width: 100%;
@@ -86,11 +86,11 @@ button:focus::after {
   opacity: 1;
 }
 
-article p + p {
+article p+p {
   margin-top: 2rem;
 }
 
-article h1 + p {
+article h1+p {
   margin-top: 2rem;
 }
 
@@ -166,7 +166,7 @@ iframe {
   border-radius: 1.25rem;
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) {
   section {
     flex-direction: column;
   }
@@ -175,7 +175,7 @@ iframe {
     width: 95%;
     gap: 2rem;
   }
-  
+
   article {
     width: 100%;
     padding: 1rem;

@@ -1,5 +1,5 @@
 html {
-  font-size: 100%; /*16px*/
+  font-size: 100%;/*16px*/
 }
 
 body {
@@ -74,19 +74,19 @@ option {
   gap: 1rem;
 }
 
-#text-editor div + div {
+#text-editor div+div {
   margin-top: 2rem;
 }
 
-#text-editor img + div {
+#text-editor img+div {
   margin-top: 2rem;
 }
 
-#text-editor div + img {
+#text-editor div+img {
   margin-top: 2rem;
 }
 
-#text-editor img + img {
+#text-editor img+img {
   margin-top: 2rem;
 }
 

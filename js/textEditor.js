@@ -15,7 +15,6 @@ const formatItalic = document.querySelector('#format-italic');
 const formatUnderline = document.querySelector('#format-underline');
 const formatStrikethrough = document.querySelector('#format-strikethrough');
 const fontSelect = document.querySelector('#font-select');
-const addLink = document.querySelector('#add-link');
 const addImage = document.querySelector('#add-image');
 const fileInput = document.createElement('input');
 fileInput.type = 'file';
@@ -121,7 +120,7 @@ textEditor.addEventListener('mouseup', () => {
 changeFontFamily(fontSelect);
 
 // funksjon laget av ChatGPT
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
   let headerHeight = document.querySelector('.text-formating-buttons').offsetHeight;
   document.querySelector('#text-editor').style.paddingTop = (headerHeight + 16) + 'px';
 });
