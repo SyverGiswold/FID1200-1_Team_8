@@ -7,7 +7,7 @@ const observer = new IntersectionObserver(entries => {
         entry.target.classList.remove('show')
       }
     })
-  }, { rootMargin: '-50% 0px' });
+  }, { rootMargin: '-30% 0px' });
   
   const hiddenElements = document.querySelectorAll('.hidden');
   hiddenElements.forEach((el) => observer.observe(el));

@@ -165,3 +165,40 @@ iframe {
   background: var(--foreground);
   border-radius: 1.25rem;
 }
+
+@media screen and (max-width: 1000px){
+  section {
+    flex-direction: column;
+  }
+
+  section section {
+    width: 95%;
+    gap: 2rem;
+  }
+  
+  article {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .showDelay {
+    transition-delay: 0ms;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  button {
+    height: 1rem;
+    font-weight: 700;
+  }
+
+  button::after {
+    display: none;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
