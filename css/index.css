@@ -2,10 +2,7 @@
 
 html {
   font-family: 'Roboto', sans-serif;
-  overflow-y: hidden;
   font-size: 100%;/*16px*/
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
   width: 100%;
   scroll-behavior: smooth;
 }
@@ -32,6 +29,19 @@ body {
 header {
   display: flex;
   justify-content: center;
+}
+
+footer {
+  background-color: var(--background);
+}
+
+.footerContent {
+  width: 75%;
+  margin: auto;
+}
+
+footer a {
+  color: var(--accent);
 }
 
 nav {
@@ -123,17 +133,7 @@ iframe {
   border-radius: 1.25rem;
 }
 
-.section1 {
-  scroll-snap-align: start;
-}
 
-.section2 {
-  scroll-snap-align: center;
-}
-
-.section3 {
-  scroll-snap-align: end;
-}
 
 .hidden {
   opacity: 0;
