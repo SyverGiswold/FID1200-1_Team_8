@@ -33,10 +33,11 @@ header {
 
 footer {
   background-color: var(--background);
+  padding: 0.5rem;
 }
 
 .footerContent {
-  width: 75%;
+  width: fit-content;
   margin: auto;
 }
 
